@@ -42,18 +42,18 @@ function generatePassword() {
       if (ifLowerPrompt) {
         genPass.push(randomLower())
         i++
-      }
-      if (ifUpperPrompt) {
+      } else if (ifUpperPrompt) {
         genPass.push(randomUpper())
         i++
-      }
-      if (ifNumPrompt) {
+      } else if (ifNumPrompt) {
         genPass.push(numChars)
         i++
-      }
-      if (ifSpecialPrompt) {
+      } else if (ifSpecialPrompt) {
         genPass.push(randomSpecial())
         i++
+      } else if (!ifLowerPrompt && !ifUpperPrompt && !ifNumPrompt && !ifSpecialPrompt) {
+        alert("You must make at least 1 selection after choosing the password length.")
+        generatePassword();
       }
     }
   } else {
@@ -66,8 +66,6 @@ function generatePassword() {
   return genPassString
 
 }
-
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
