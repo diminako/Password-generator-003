@@ -25,7 +25,6 @@ function randomSpecial() {
   return specialChars[randoGen(specialChars.length)]
 }
 
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -84,12 +83,13 @@ function generatePassword() {
 
 }
 
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 
-// My original logic which didn't follow the instructions well enough but still worked.
+
+// My original logic which didn't follow the instructions well enough but still worked.  This was inside the generatePassword function.
+
 
 // var specialChars = ["!", "@", "#", "$", "%", "&", "*", "?", "<", ">", "^", "="];
 // var specialChars1 = specialChars[randoGen(10)];
@@ -104,9 +104,6 @@ generateBtn.addEventListener("click", writePassword);
 //   passLength = prompt("Your selection must be between 8 and 128 characters.  Failure to choose will automatically assign 10 characters.")
 // }
 
-
-
-
 // var generatedPass = userAge[randoGen(4)] +
 //   userName[randoGen(3)].toUpperCase() +
 //   randoGen(10) +
@@ -117,9 +114,6 @@ generateBtn.addEventListener("click", writePassword);
 //   userName[userName.length - 1].toUpperCase() +
 //   userAge[randoGen(4)] +
 //   specialChars2;
-
-
-
 
 // console.log(generatedPass);
 // return generatedPass;
