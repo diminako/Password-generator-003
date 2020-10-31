@@ -5,6 +5,21 @@ function randoGen(x) {
   return Math.floor(Math.random() * x)
 }
 
+var lowerArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+function randomLower() {
+  return lowerArr[randoGen(lowerArr.length)]
+}
+
+var upperArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+function randomUpper() {
+  return upperArr[randoGen(upperArr.length)]
+}
+
+var specialChars = ["!", "@", "#", "$", "%", "&", "*", "?", "<", ">", "^", "="];
+function randomSpecial() {
+  return specialChars[randoGen(specialChars.length)]
+}
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -17,20 +32,38 @@ function generatePassword() {
   var passLength = parseInt(passLengthPrompt);
   var ifLowerPrompt = confirm("If you would like lower case characters choose ok.  If not choose cancel.")
   var ifUpperPrompt = confirm("If you would like UPPER case characters choose ok.  If not choose cancel.")
-  var lowerUpperArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
   var ifNumPrompt = confirm("If you would like numerical characters choose ok.  If not choose cancel.")
   var numChars = randoGen(10)
   var ifSpecialPrompt = confirm("If you would like special characters choose ok.  If not choose cancel.")
-  var specialChars = ["!", "@", "#", "$", "%", "&", "*", "?", "<", ">", "^", "="];
+  var genPass = []
 
-  if (passLength > 8 && passLength < 128) {
-    for (var i = 1; passLength >= i )
+  if (passLength >= 8 && passLength <= 128) {
+    for (var i = 1; passLength >= i;) {
+      if (ifLowerPrompt) {
+        genPass.push(randomLower())
+        i++
+      }
+      if (ifUpperPrompt) {
+        genPass.push(randomUpper())
+        i++
+      }
+      if (ifNumPrompt) {
+        genPass.push(numChars)
+        i++
+      }
+      if (ifSpecialPrompt) {
+        genPass.push(randomSpecial())
+        i++
+      }
+    }
+  } else {
+    alert("You must choose a number at least 8 and no more than 128")
+    generatePassword()
   }
 
-
-
-
-
+  var genPassString = genPass.toString();
+  genPassString = genPassString.replace(/,/g, '')
+  return genPassString
 
 }
 
