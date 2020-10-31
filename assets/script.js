@@ -25,6 +25,7 @@ function randomSpecial() {
   return specialChars[randoGen(specialChars.length)]
 }
 
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -49,6 +50,11 @@ function generatePassword() {
   //  If statement controlling the logic behind the characters inputs.
   if (passLength >= 8 && passLength <= 128) {
     for (var i = 1; passLength >= i;) {
+      if ((ifLowerPrompt || ifUpperPrompt || ifNumPrompt || ifSpecialPrompt) === false) {
+        alert("You must make at least 1 selection after choosing the password length.")
+        location.reload();
+        return false;
+      }
       if (ifLowerPrompt) {
         genPass.push(randomLower())
         i++
@@ -64,10 +70,6 @@ function generatePassword() {
       if (ifSpecialPrompt) {
         genPass.push(randomSpecial())
         i++
-      }
-      if (ifLowerPrompt === false && ifUpperPrompt === false && ifNumPrompt === false && ifSpecialPrompt === false) {
-        alert("You must make at least 1 selection after choosing the password length.")
-        generatePassword();
       }
     }
   } else {
