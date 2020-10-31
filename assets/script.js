@@ -42,7 +42,6 @@ function generatePassword() {
   var ifLowerPrompt = confirm("If you would like lower case characters choose ok.  If not choose cancel.")
   var ifUpperPrompt = confirm("If you would like UPPER case characters choose ok.  If not choose cancel.")
   var ifNumPrompt = confirm("If you would like numerical characters choose ok.  If not choose cancel.")
-  var numChars = randoGen(10)
   var ifSpecialPrompt = confirm("If you would like special characters choose ok.  If not choose cancel.")
   //  An array to store the random characters for the password
   var genPass = []
@@ -53,32 +52,36 @@ function generatePassword() {
       if (ifLowerPrompt) {
         genPass.push(randomLower())
         i++
-      } else if (ifUpperPrompt) {
+      }
+      if (ifUpperPrompt) {
         genPass.push(randomUpper())
         i++
-      } else if (ifNumPrompt) {
-        genPass.push(numChars)
+      }
+      if (ifNumPrompt) {
+        genPass.push(randoGen(10))
         i++
-      } else if (ifSpecialPrompt) {
+      }
+      if (ifSpecialPrompt) {
         genPass.push(randomSpecial())
         i++
-        //  If selections are not valid ie. no options were picked to fill the password.  the function will reset.
-      } else if (!ifLowerPrompt && !ifUpperPrompt && !ifNumPrompt && !ifSpecialPrompt) {
+      }
+      if (ifLowerPrompt === false && ifUpperPrompt === false && ifNumPrompt === false && ifSpecialPrompt === false) {
         alert("You must make at least 1 selection after choosing the password length.")
         generatePassword();
       }
     }
-    //  If the incorrect length was given by the User this resets the function over.
   } else {
     alert("You must choose a number at least 8 and no more than 128")
-    generatePassword()
+    generatePassword();
   }
 
+  //  If selections are not valid ie. no options were picked to fill the password.  the function will reset.
   var genPassString = genPass.toString();
   genPassString = genPassString.replace(/,/g, '')
   return genPassString
 
 }
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
