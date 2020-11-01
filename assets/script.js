@@ -56,19 +56,35 @@ function generatePassword() {
       }
       if (ifLowerPrompt) {
         genPass.push(randomLower())
-        i++
+        if (passLength === i) {
+          break;
+        } else {
+          i++
+        }
       }
       if (ifUpperPrompt) {
         genPass.push(randomUpper())
-        i++
+        if (passLength === i) {
+          break;
+        } else {
+          i++
+        }
       }
       if (ifNumPrompt) {
         genPass.push(randoGen(10))
-        i++
+        if (passLength === i) {
+          break;
+        } else {
+          i++
+        }
       }
       if (ifSpecialPrompt) {
         genPass.push(randomSpecial())
-        i++
+        if (passLength === i) {
+          break;
+        } else {
+          i++
+        }
       }
     }
   } else {
@@ -80,16 +96,11 @@ function generatePassword() {
   var genPassString = genPass.toString();
   genPassString = genPassString.replace(/,/g, '')
   return genPassString
-
 }
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-
 // My original logic which didn't follow the instructions well enough but still worked.  This was inside the generatePassword function.
-
 
 // var specialChars = ["!", "@", "#", "$", "%", "&", "*", "?", "<", ">", "^", "="];
 // var specialChars1 = specialChars[randoGen(10)];
